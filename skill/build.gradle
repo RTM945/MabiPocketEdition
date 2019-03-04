@@ -1,0 +1,8 @@
+apply plugin: "java"
+
+def jme3 = [v:'3.1.0-stable', g:'org.jmonkeyengine']    
+
+dependencies {
+    // 将libs文件夹下所有jar文件添加到classpath
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}

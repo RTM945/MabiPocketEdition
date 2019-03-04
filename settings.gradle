@@ -1,0 +1,9 @@
+include 'assets'
+include 'pack'
+include 'skill'
+include 'core'
+include 'items'
+include 'app'
+include 'colors'
+
+rootProject.name = 'MabiPocketEdition'

@@ -1,0 +1,59 @@
+apply plugin: "java"
+
+group = 'net.jmecn'
+version = '1.0'
+//编译JAVA文件时采用UTF-8
+compileJava.options.encoding = 'UTF-8'  
+
+sourceSets {  
+    main {
+        output.resourcesDir = "build/classes/main"   
+    }
+}
+
+def jme3 = [v:'3.1.0-stable', g:'org.jmonkeyengine']    
+def jetty = [g:'org.eclipse.jetty', v:'9.2.9.v20150224'];
+
+dependencies {
+    compile project(":core")
+    
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    // 添加jetty依赖
+    // compile "${jetty.g}:jetty-server:${jetty.v}"
+    // compile "${jetty.g}:jetty-servlet:${jetty.v}"
+    // compile "${jetty.g}:jetty-webapp:${jetty.v}"
+    // compile "${jetty.g}:jetty-jsp:${jetty.v}"
+
+    testCompile 'junit:junit:4.12'
+    testCompile "${jme3.g}:jme3-desktop:${jme3.v}"
+}
+
+jar() {
+    manifest {  
+        attributes 'Implementation-Title': 'Gradle',
+					'Implementation-Version': version,
+					'Created-By': 'yan',
+					'Main-Class': 'net.jmecn.mabi.web.Main',
+					'Class-Path': configurations.runtime.collect {'libs/' + it.getName()}.join(' ')
+    }
+    into('') {  
+        from "$buildDir/classes/main"  
+    }
+    into('') {  
+        from "$projectDir/src/main/resources"
+    }
+    
+    // 把依赖的jar拷贝到lib文件夹下
+    copy {
+        from configurations.runtime  
+		into 'build/libs/lib'
+    }
+    
+    // 把www文件夹中的内容拷贝到build目录下  
+    copy {
+        from 'www/'
+		into 'build/libs/www'
+    }
+}

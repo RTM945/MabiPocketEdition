@@ -1,0 +1,6 @@
+# Created by yanmaoyuan at 2017/05/30 21:07
+# 本文件用于记录package文件的位置
+I:/game/Mabinogi/data/
+I:/game/Mabinogi/package/
+G:/4 我的资料/mabi/
+/home/yan/Apps/Mabinogi/package/
