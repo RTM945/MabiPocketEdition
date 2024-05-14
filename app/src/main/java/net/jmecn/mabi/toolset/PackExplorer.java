@@ -37,7 +37,7 @@ public class PackExplorer extends JFrame {
         this.setSize(1024, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel label = new JLabel("null");
+        final JLabel label = new JLabel("null");
         JButton button = new JButton("解压缩");
         button.addActionListener(new ActionListener() {
             @Override
@@ -52,7 +52,7 @@ public class PackExplorer extends JFrame {
         DefaultMutableTreeNode node = new DefaultMutableTreeNode("data");
         loadTree(node);
 
-        JTree tree = new JTree(node);
+        final JTree tree = new JTree(node);
         tree.expandRow(0);
 
         tree.addTreeSelectionListener(new TreeSelectionListener() {
